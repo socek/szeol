@@ -13,7 +13,9 @@ class SettingsFactory(object):
 
     def get_for(self, endpoint):
         files = self.ENDPOINTS[endpoint]
-        return self._generate_settings(files)
+        for _settings in self._generate_settings(files):
+            for name, value in _settings.items():
+                globals()[name] = value
 
     def _generate_settings(self, files=None):
         files = files or []
@@ -26,7 +28,6 @@ class SettingsFactory(object):
         settings['paths'] = paths
         return settings, paths
 
+
 factory = SettingsFactory()
-for _settings in factory.get_for('uwsgi'):
-    for name, value in _settings.items():
-        locals()[name] = value
+factory.get_for('uwsgi')

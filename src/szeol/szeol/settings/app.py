@@ -17,7 +17,6 @@ def make_settings(settings, paths):
 def default_paths(settings, paths):
     paths['BASE_DIR'] = dirname(dirname(dirname(abspath(__file__))))
     paths.set_path('DATA_DIR', 'BASE_DIR', '../tmpdata')
-    print(paths['sqlite_db'])
 
 
 def session(settings, paths):
