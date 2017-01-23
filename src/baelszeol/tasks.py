@@ -1,7 +1,9 @@
 import sys
 
 
+from bael.project.develop import Develop
 from baelfire.dependencies import AlwaysRebuild
+from baelfire.dependencies import RunBefore
 from baelfire.error import CommandAborted
 from baelfire.error import CommandError
 
@@ -11,6 +13,7 @@ from .django import BaseManagePy
 class BaseDjangoServerTask(BaseManagePy):
 
     def create_dependecies(self):
+        self.add_dependency(RunBefore(Develop()))
         self.add_dependency(AlwaysRebuild())
 
 
