@@ -17,6 +17,7 @@ def make_settings(settings, paths):
 def default_paths(settings, paths):
     paths['BASE_DIR'] = dirname(dirname(dirname(abspath(__file__))))
     paths.set_path('DATA_DIR', 'BASE_DIR', '../tmpdata')
+    paths.set_path('main_static', 'BASE_DIR', 'static')
 
 
 def session(settings, paths):
@@ -35,12 +36,14 @@ def session(settings, paths):
 
 def installed_apps(settings, paths):
     settings['INSTALLED_APPS'] = [
-        'django.contrib.admin',
         'django.contrib.auth',
         'django.contrib.contenttypes',
         'django.contrib.sessions',
         'django.contrib.messages',
         'django.contrib.staticfiles',
+
+        'szeol.main',
+        'szeol.localauth',
     ]
 
 
@@ -62,6 +65,19 @@ def urlconf(settings, paths):
 
 def templates(settings, paths):
     settings['TEMPLATES'] = [
+        {
+            'BACKEND': 'django.template.backends.jinja2.Jinja2',
+            'DIRS': [],
+            'APP_DIRS': True,
+            'OPTIONS': {
+                # 'context_processors': [
+                #     'django.template.context_processors.debug',
+                #     'django.template.context_processors.request',
+                #     'django.contrib.auth.context_processors.auth',
+                #     'django.contrib.messages.context_processors.messages',
+                # ],
+            },
+        },
         {
             'BACKEND': 'django.template.backends.django.DjangoTemplates',
             'DIRS': [],
@@ -97,6 +113,8 @@ def auths(settings, paths):
             'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
         },
     ]
+    settings['LOGIN_URL '] = 'login'
+    settings['LOGIN_REDIRECT_URL'] = 'home'
 
 
 def i18n(settings, paths):
@@ -109,3 +127,6 @@ def i18n(settings, paths):
 
 def static(settings, paths):
     settings['STATIC_URL'] = '/static/'
+    settings['STATICFILES_DIRS'] = [
+        paths['main_static'],
+    ]
