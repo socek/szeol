@@ -5,7 +5,7 @@ from django.contrib.auth import views as auth_views
 
 urlpatterns = [
     url(
-        r'^login/$',
+        r'^accounts/login/$',
         auth_views.login,
         {'template_name': 'localauth/login.jinja2'},
         name='login'),
