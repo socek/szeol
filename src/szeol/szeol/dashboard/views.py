@@ -1,10 +1,11 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.http import HttpResponse
 from django.views import View
+from django.shortcuts import render
 
 
 class DashboardHome(LoginRequiredMixin, View):
 
+    template_name = 'szeol/dashboard.jinja2'
+
     def get(self, request):
-        print(request.user)
-        return HttpResponse('result')
+        return render(request, self.template_name)

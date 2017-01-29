@@ -114,7 +114,7 @@ def auths(settings, paths):
             'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
         },
     ]
-    settings['LOGIN_URL '] = 'login'
+    settings['LOGIN_URL '] = '/accounts/login'
     settings['LOGIN_REDIRECT_URL'] = 'dashboard_home'
 
 
