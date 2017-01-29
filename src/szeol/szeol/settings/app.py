@@ -44,6 +44,7 @@ def installed_apps(settings, paths):
 
         'szeol.main',
         'szeol.localauth',
+        'szeol.dashboard',
     ]
 
 
@@ -114,7 +115,7 @@ def auths(settings, paths):
         },
     ]
     settings['LOGIN_URL '] = 'login'
-    settings['LOGIN_REDIRECT_URL'] = 'home'
+    settings['LOGIN_REDIRECT_URL'] = 'dashboard_home'
 
 
 def i18n(settings, paths):
