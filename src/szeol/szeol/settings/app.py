@@ -116,6 +116,7 @@ def auths(settings, paths):
     ]
     settings['LOGIN_URL '] = '/accounts/login'
     settings['LOGIN_REDIRECT_URL'] = 'dashboard_home'
+    settings['LOGOUT_REDIRECT_URL'] = '/'
 
 
 def i18n(settings, paths):
