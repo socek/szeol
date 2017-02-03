@@ -67,19 +67,6 @@ def urlconf(settings, paths):
 def templates(settings, paths):
     settings['TEMPLATES'] = [
         {
-            'BACKEND': 'django.template.backends.jinja2.Jinja2',
-            'DIRS': [],
-            'APP_DIRS': True,
-            'OPTIONS': {
-                # 'context_processors': [
-                #     'django.template.context_processors.debug',
-                #     'django.template.context_processors.request',
-                #     'django.contrib.auth.context_processors.auth',
-                #     'django.contrib.messages.context_processors.messages',
-                # ],
-            },
-        },
-        {
             'BACKEND': 'django.template.backends.django.DjangoTemplates',
             'DIRS': [],
             'APP_DIRS': True,
@@ -120,11 +107,13 @@ def auths(settings, paths):
 
 
 def i18n(settings, paths):
-    settings['LANGUAGE_CODE'] = 'en-us'
+    paths.set_path('locale', 'BASE_DIR', '../../locale')
+    settings['LANGUAGE_CODE'] = 'pl-pl'
     settings['TIME_ZONE'] = 'UTC'
     settings['USE_I18N'] = True
     settings['USE_L10N'] = True
     settings['USE_TZ'] = True
+    settings['LOCALE_PATHS'] = (paths['locale'],)
 
 
 def static(settings, paths):

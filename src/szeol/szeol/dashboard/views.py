@@ -6,7 +6,7 @@ from szeol.main.views import contextwrapper
 
 class DashboardHome(LoginRequiredMixin, View):
 
-    TEMPLATE_NAME = 'szeol/dashboard.jinja2'
+    TEMPLATE_NAME = 'szeol/dashboard.html'
 
     @contextwrapper
     def get(self, request, context, matchdict):

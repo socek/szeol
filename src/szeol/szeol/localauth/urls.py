@@ -5,7 +5,7 @@ urlpatterns = [
     url(
         r'^login/$',
         auth_views.login,
-        {'template_name': 'localauth/login.jinja2'},
+        {'template_name': 'localauth/login.html'},
         name='login'),
     url(r'^logout/$',
         auth_views.logout,

@@ -1,4 +1,5 @@
 {% load static %}
+{% load i18n %}
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -34,30 +35,30 @@
             <form method="post" action="{% url 'login' %}">
                 {% csrf_token %}
 
-              <h1>Login Form</h1>
+              <h1>{% trans "Login Form" %}</h1>
               {% if form.errors %}
               <div class="form-group has-error">
-                <label class="control-label" for="inputError1">Your username and password didn't match. Please try again.</label>
+                <label class="control-label" for="inputError1">{% trans "Your username and password didn't match. Please try again." %}</label>
               </div>
               {% endif %}
 
             {% if next %}
                 {% if user.is_authenticated %}
-                    <p>Your account doesn't have access to this page. To proceed, please login with an account that has access.</p>
+                    <p>{% trans "Your account doesn't have access to this page. To proceed, please login with an account that has access." %}</p>
                 {% else %}
-                    <p>Please login to see this page.</p>
+                    <p>{% trans "Please login to see this page." %}</p>
                 {% endif %}
             {% endif %}
 
               <div>
-                <input name="username" type="text" class="form-control" placeholder="Username" required="" />
+                <input name="username" type="text" class="form-control" placeholder="{% trans "Username" %}" required="" />
               </div>
               <div>
-                <input name="password" type="password" class="form-control" placeholder="Password" required="" />
+                <input name="password" type="password" class="form-control" placeholder="{% trans "Password" %}" required="" />
               </div>
               <div>
                 <input type="hidden" name="next" value="{{ next }}" />
-                <input type="submit" value="Log in" class="btn btn-default submit" />
+                <input type="submit" value="{% trans "Log in" %}" class="btn btn-default submit" />
               </div>
 
               <div class="clearfix"></div>
@@ -74,25 +75,25 @@
         <div id="register" class="animate form registration_form">
           <section class="login_content">
             <form>
-              <h1>Create Account</h1>
+              <h1>{% trans "Create Account" %}</h1>
               <div>
-                <input type="text" class="form-control" placeholder="Username" required="" />
+                <input type="text" class="form-control" placeholder="{% trans "Username" %}" required="" />
               </div>
               <div>
-                <input type="email" class="form-control" placeholder="Email" required="" />
+                <input type="email" class="form-control" placeholder="{% trans "Email" %}" required="" />
               </div>
               <div>
-                <input type="password" class="form-control" placeholder="Password" required="" />
+                <input type="password" class="form-control" placeholder="{% trans "Password" %}" required="" />
               </div>
               <div>
-                <a class="btn btn-default submit" href="index.html">Submit</a>
+                <a class="btn btn-default submit" href="index.html">{% trans "Submit" %}</a>
               </div>
 
               <div class="clearfix"></div>
 
               <div class="separator">
-                <p class="change_link">Already a member ?
-                  <a href="#signin" class="to_register"> Log in </a>
+                <p class="change_link">{% trans "Already a member ?" %}
+                  <a href="#signin" class="to_register"> {% trans "Log In" %} </a>
                 </p>
 
                 <div class="clearfix"></div>
