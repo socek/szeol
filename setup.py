@@ -8,7 +8,7 @@ install_requires = [
     'Jinja2==2.9.4',
 
     'baelfire==0.3.2',
-    'bael.project==0.2.3',
+    'bael.project==0.2.4',
     'pytest==3.0.6',
     'ipython==5.1.0',
     'ipdb==0.10.1',
