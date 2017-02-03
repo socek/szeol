@@ -6,6 +6,7 @@ from szeol.main.views import contextwrapper
 
 class DashboardHome(LoginRequiredMixin, View):
 
+    MENU_ID = 'dashboard_home'
     TEMPLATE_NAME = 'szeol/dashboard.html'
 
     @contextwrapper

@@ -43,6 +43,7 @@ def installed_apps(settings, paths):
         'django.contrib.staticfiles',
 
         'szeol.main',
+        'szeol.menu',
         'szeol.localauth',
         'szeol.dashboard',
     ]
