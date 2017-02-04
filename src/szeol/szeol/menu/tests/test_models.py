@@ -51,3 +51,37 @@ class TestTopMenuObject(SzeolFixtures):
         elements[0].is_active = False
         elements[1].is_active = True
         assert obj.is_active
+
+
+class TestMenuParser(SzeolFixtures):
+    MENU = (
+        dict(
+            id='dashboard',
+            name='Dashboard',
+            icon='fa-home',
+            elements=(
+                dict(
+                    id='dashboard_home',
+                    name='Statistics',
+                    url=lambda: 'someurl',
+                ),
+            )
+        ),
+    )
+
+    def test_simple(self, mrequest):
+        menu = MenuParser(self.MENU)
+        menu.TOP_MENU_CLS = MagicMock()
+        menu.DOWN_MENU_CLS = MagicMock()
+
+        data = list(menu.parse(mrequest))
+
+        assert len(data) == 1
+        assert data[0] == menu.TOP_MENU_CLS.return_value
+        menu.TOP_MENU_CLS.assert_called_once_with(
+            mrequest,
+            self.MENU[0],
+            [menu.DOWN_MENU_CLS.return_value])
+        menu.DOWN_MENU_CLS.assert_called_once_with(
+            mrequest,
+            self.MENU[0]['elements'][0])

@@ -45,4 +45,4 @@ class MenuParser(object):
         elements = [
             self.DOWN_MENU_CLS(self.request, element)
             for element in top.get('elements', [])]
-        return TopMenuObject(self.request, top, elements)
+        return self.TOP_MENU_CLS(self.request, top, elements)
