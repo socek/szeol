@@ -9,6 +9,7 @@ install_requires = [
     'baelfire==0.3.2',
     'bael.project==0.2.4',
     'pytest==3.0.6',
+    'pytest-django==3.1.2',
     'ipython==5.1.0',
     'ipdb==0.10.1',
 ]
