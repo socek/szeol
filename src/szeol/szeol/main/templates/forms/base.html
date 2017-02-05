@@ -1,0 +1,7 @@
+<div class="item form-group{% if field.errors %} bad{% endif %}">
+  {% block body %}
+  {% endblock %}
+  {% for error in field.errors %}
+    <div class="alert">{{error}}</div>
+  {% endfor %}
+</div>
