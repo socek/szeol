@@ -6,6 +6,9 @@ urlpatterns = [
         r'^accounts/',
         include('szeol.localauth.urls')),
     url(
+        r'^products/',
+        include('szeol.products.urls')),
+    url(
         r'^',
         include('szeol.dashboard.urls')),
 ]

@@ -14,4 +14,16 @@ MENU = (
             ),
         )
     ),
+    dict(
+        id='products',
+        name=_('Proucts'),
+        icon='fa-glass',
+        elements=(
+            dict(
+                id='products_create',
+                name=_('Add'),
+                url=lambda: reverse('products_create'),
+            ),
+        )
+    ),
 )

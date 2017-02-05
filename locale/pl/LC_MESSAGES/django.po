@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-02-03 19:09+0000\n"
+"POT-Creation-Date: 2017-02-04 14:26+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -19,21 +19,21 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
 "|| n%100>=20) ? 1 : 2);\n"
 
-#: szeol/dashboard/templates/szeol/dashboard.html:9
+#: szeol/dashboard/templates/szeol/dashboard.html:10
 msgid "Total Clients"
 msgstr "Klientów"
 
-#: szeol/dashboard/templates/szeol/dashboard.html:11
-#: szeol/dashboard/templates/szeol/dashboard.html:16
-#: szeol/dashboard/templates/szeol/dashboard.html:21
+#: szeol/dashboard/templates/szeol/dashboard.html:12
+#: szeol/dashboard/templates/szeol/dashboard.html:17
+#: szeol/dashboard/templates/szeol/dashboard.html:22
 msgid "From last Week"
 msgstr "od ostatniego tygodnia"
 
-#: szeol/dashboard/templates/szeol/dashboard.html:14
+#: szeol/dashboard/templates/szeol/dashboard.html:15
 msgid "Total Products"
 msgstr "Produktów"
 
-#: szeol/dashboard/templates/szeol/dashboard.html:19
+#: szeol/dashboard/templates/szeol/dashboard.html:20
 msgid "Orders"
 msgstr "Zamówień"
 
@@ -80,6 +80,7 @@ msgid "Email"
 msgstr "Email"
 
 #: szeol/localauth/templates/localauth/login.html:89
+#: szeol/products/templates/products/create.html:74
 msgid "Submit"
 msgstr "Zapisz"
 
@@ -91,18 +92,78 @@ msgstr "Posiadasz konto ?"
 msgid "Log In"
 msgstr "Zaloguj"
 
-#: szeol/main/templates/main/base.html:49
-msgid "Statistics"
-msgstr "Statystyki"
-
-#: szeol/main/templates/main/base.html:51
+#: szeol/menu/menu.py:7
 msgid "Dashboard"
 msgstr "Kokpit"
 
-#: szeol/main/templates/main/base.html:72
+#: szeol/menu/menu.py:12
+msgid "Statistics"
+msgstr "Statystyki"
+
+#: szeol/menu/menu.py:19
+#, fuzzy
+#| msgid "Total Products"
+msgid "Proucts"
+msgstr "Produktów"
+
+#: szeol/menu/menu.py:24
+msgid "Add"
+msgstr "Dodaj"
+
+#: szeol/menu/templates/menu/topnav.html:12
 msgid "Profil"
 msgstr "Profil"
 
-#: szeol/main/templates/main/base.html:76
+#: szeol/menu/templates/menu/topnav.html:16
 msgid "Logout"
 msgstr "Wyloguj"
+
+#: szeol/products/models.py:8
+msgid "Dry"
+msgstr "Wytrawne"
+
+#: szeol/products/models.py:9
+msgid "Semi-Dry"
+msgstr "Półwytrawne"
+
+#: szeol/products/models.py:10
+msgid "Semi-Sweet"
+msgstr "Półsłodkie"
+
+#: szeol/products/models.py:11
+msgid "Sweet"
+msgstr "Słodkie"
+
+#: szeol/products/models.py:14
+msgid "White"
+msgstr "Białe"
+
+#: szeol/products/models.py:15
+msgid "Red"
+msgstr "Czerwone"
+
+#: szeol/products/models.py:16
+msgid "Rosé"
+msgstr "Różowe"
+
+#: szeol/products/models.py:18
+msgid "Name"
+msgstr "Nazwa"
+
+#: szeol/products/models.py:19
+msgid "Year"
+msgstr "Rocznik"
+
+#: szeol/products/models.py:20
+msgid "Taste"
+msgstr "Smak"
+
+#: szeol/products/models.py:21
+msgid "Color"
+msgstr "Kolor"
+
+#: szeol/products/templates/products/create.html:9
+#, fuzzy
+#| msgid "Create Account"
+msgid "Create Product"
+msgstr "Stwórz konto"
