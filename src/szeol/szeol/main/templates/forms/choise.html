@@ -1,4 +1,6 @@
-<div class="item form-group{% if field.errors %} bad{% endif %}">
+{% extends "forms/base.html" %}
+
+{% block body %}
   <label class="control-label col-md-3 col-sm-3 col-xs-12">{{field.help_text}} {% if field.field.required %}<span class="required">*</span>{% endif %}</label>
   <div class="col-md-6 col-sm-6 col-xs-12">
     <div id="{{field.id_for_label}}" class="btn-group" data-toggle="buttons">
@@ -11,7 +13,4 @@
       {% endfor %}
     </div>
   </div>
-  {% for error in field.errors %}
-    <div class="alert">{{error}}</div>
-  {% endfor %}
-</div>
+{% endblock %}

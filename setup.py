@@ -12,6 +12,7 @@ install_requires = [
     'pytest-django==3.1.2',
     'ipython==5.1.0',
     'ipdb==0.10.1',
+    'freezegun==0.3.8',
 ]
 
 

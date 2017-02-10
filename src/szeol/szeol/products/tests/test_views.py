@@ -1,7 +1,9 @@
 from pytest import yield_fixture
 
+from szeol.main.testing import SzeolDriverFixtures
 from szeol.main.testing import SzeolFixtures
 from szeol.products.views import CreateProduct
+from szeol.products.views import ListProduct
 
 
 class TestDashboardHome(SzeolFixtures):
@@ -40,4 +42,15 @@ class TestDashboardHome(SzeolFixtures):
 
         assert result == mredirect.return_value
         mform.assert_called_once_with(mrequest.POST)
-        mredirect.assert_called_once_with('dashboard_home')
+        mredirect.assert_called_once_with('products_list')
+
+
+class TestListProduct(SzeolDriverFixtures):
+
+    def test_get(self, mrequest, mproduct_driver):
+        ctrl = ListProduct()
+
+        ctrl.get(mrequest)
+
+        assert ctrl._context == dict(
+            products=mproduct_driver.viewable.return_value)

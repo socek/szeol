@@ -6,7 +6,7 @@ from django.shortcuts import render
 def contextwrapper(method):
     @wraps(method)
     def wrapper(self, request, *args, **kwargs):
-        self._context = {}
+        request._context = self._context = getattr(request, '_context', {})
         self._request = request
         self._matchdict = kwargs
         self._request.menu_id = getattr(self, 'MENU_ID', '')

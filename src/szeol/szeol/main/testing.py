@@ -3,6 +3,8 @@ from mock import patch
 from pytest import fixture
 from pytest import yield_fixture
 
+from szeol.products.models import Product
+
 
 class SzeolFixtures(object):
 
@@ -13,9 +15,19 @@ class SzeolFixtures(object):
 
     @fixture
     def mrequest(self):
-        return MagicMock()
+        mock = MagicMock()
+        mock._context = {}
+        return mock
 
     @yield_fixture
     def mredirect(self):
         with self._patch('redirect') as mock:
+            yield mock
+
+
+class SzeolDriverFixtures(SzeolFixtures):
+
+    @yield_fixture
+    def mproduct_driver(self):
+        with patch.object(Product, 'Driver') as mock:
             yield mock
