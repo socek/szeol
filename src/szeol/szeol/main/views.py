@@ -15,8 +15,7 @@ def contextwrapper(method):
             request,
             self._context,
             self._matchdict,
-            *args,
-            **kwargs)
+            *args)
         if not result:
             return render(request, self.TEMPLATE_NAME, self._context)
         else:
