@@ -32,6 +32,7 @@ if __name__ == '__main__':
                 'shell = baelszeol.cmd:shell',
                 'manage = baelszeol.cmd:manage',
                 'tests = baelszeol.cmd:tests',
+                'testscov = baelszeol.cmd:coverage',
             )
         }
     )

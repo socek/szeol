@@ -37,6 +37,17 @@ class Tests(BaseDjangoServerTask):
             pass
 
 
+class Coverage(BaseDjangoServerTask):
+
+    def build(self):
+        cmd = " --cov szeol " + " ".join('"%s"' % x.strip().replace('"', r'\"')
+                       for x in sys.argv[1:])
+        try:
+            self.pytest(cmd)
+        except (CommandAborted, CommandError):
+            pass
+
+
 class Manage(BaseDjangoServerTask):
 
     def manage(self, cmd, *args, **kwargs):
@@ -54,24 +65,6 @@ class Manage(BaseDjangoServerTask):
                        for x in sys.argv[1:])
         try:
             self.manage(cmd)
-        except (CommandAborted, CommandError):
-            pass
-
-
-class Coverage(BaseDjangoServerTask):
-
-    def build(self):
-        try:
-            self.pytest(
-                (
-                    '--junitxml=/home/socek/projects/rejoiner/test-reports/django.xml'
-                    ' --cov=app --cov=debug --cov-config=.coveragerc --cov-report=html'
-                ),
-                shell=True
-            )
-            print('')
-            print('')
-            print('')
         except (CommandAborted, CommandError):
             pass
 

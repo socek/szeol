@@ -6,6 +6,7 @@ from .tasks import Manage
 from .tasks import Runserver
 from .tasks import Shell
 from .tasks import Tests
+from .tasks import Coverage
 
 
 class ReProjectCore(ProjectCore):
@@ -38,3 +39,7 @@ def manage():
 
 def tests():
     run_task(Tests)
+
+
+def coverage():
+    run_task(Coverage)
