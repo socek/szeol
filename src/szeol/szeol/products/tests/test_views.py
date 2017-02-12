@@ -1,8 +1,11 @@
+from mock import patch
+from mock import sentinel
 from pytest import yield_fixture
 
 from szeol.main.testing import SzeolDriverFixtures
 from szeol.main.testing import SzeolFixtures
 from szeol.products.views import CreateProduct
+from szeol.products.views import EditProduct
 from szeol.products.views import ListProduct
 
 
@@ -54,3 +57,109 @@ class TestListProduct(SzeolDriverFixtures):
 
         assert ctrl._context == dict(
             products=mproduct_driver.viewable.return_value)
+
+
+class TestEditProduct(SzeolDriverFixtures):
+
+    MAINPATH = 'szeol.products.views'
+
+    @yield_fixture
+    def medit_product_form(self):
+        with patch('szeol.products.views.EditProductForm') as mock:
+            yield mock
+
+    @yield_fixture
+    def mfetch_product(self):
+        with patch.object(EditProduct, '_fetch_product') as mock:
+            yield mock
+
+    @yield_fixture
+    def mfetch_form(self):
+        with patch.object(EditProduct, '_fetch_form') as mock:
+            yield mock
+
+    def test_fetch_product(self, mproduct_driver):
+        ctrl = EditProduct()
+
+        context = dict()
+        matchdict = dict(product_id=sentinel.product_id)
+
+        result = ctrl._fetch_product(context, matchdict)
+
+        assert result == mproduct_driver.get_viewable_by_id.return_value
+        mproduct_driver.get_viewable_by_id.assert_called_once_with(
+            sentinel.product_id)
+        assert context == dict(product=result)
+
+    def test_fetch_form(self, medit_product_form):
+        ctrl = EditProduct()
+
+        context = dict()
+        product = sentinel.product
+        post = sentinel.post
+
+        result = ctrl._fetch_form(context, product, post)
+
+        medit_product_form.assert_called_once_with(post, instance=product)
+        assert context == dict(form=medit_product_form.return_value)
+        assert result == medit_product_form.return_value
+
+    def test_get(self, mrequest, mfetch_product, mfetch_form):
+        ctrl = EditProduct()
+
+        ctrl.get(mrequest)
+
+        mfetch_product.assert_called_once_with(
+            ctrl._context,
+            ctrl._matchdict)
+        mfetch_form.assert_called_once_with(
+            ctrl._context,
+            mfetch_product.return_value)
+
+    def test_post_fail(
+        self,
+        mrequest,
+        mfetch_product,
+        mfetch_form,
+    ):
+        ctrl = EditProduct()
+        form = mfetch_form.return_value
+        form.is_valid.return_value = False
+
+        ctrl.post(mrequest)
+
+        mfetch_product.assert_called_once_with(
+            ctrl._context,
+            ctrl._matchdict)
+        mfetch_form.assert_called_once_with(
+            ctrl._context,
+            mfetch_product.return_value,
+            mrequest.POST)
+
+        form.is_valid.assert_called_once_with()
+
+    def test_post_success(
+        self,
+        mrequest,
+        mfetch_product,
+        mfetch_form,
+        mredirect,
+    ):
+        ctrl = EditProduct()
+        form = mfetch_form.return_value
+        form.is_valid.return_value = True
+
+        result = ctrl.post(mrequest)
+
+        mfetch_product.assert_called_once_with(
+            ctrl._context,
+            ctrl._matchdict)
+        mfetch_form.assert_called_once_with(
+            ctrl._context,
+            mfetch_product.return_value,
+            mrequest.POST)
+
+        form.is_valid.assert_called_once_with()
+        form.save.assert_called_once_with()
+        assert result == mredirect.return_value
+        mredirect.assert_called_once_with('products_list')

@@ -3,6 +3,7 @@ from datetime import timedelta
 from freezegun import freeze_time
 from pytest import fixture
 from pytest import mark
+from pytest import raises
 
 from szeol.products.models import Product
 
@@ -56,6 +57,14 @@ class TestProductDriver(object):
         product = self.product()
         assert Product.Driver.viewable_count() == 2
         assert Product.Driver.viewable()[1].id == product.id
+
+    def test_get_viewable_by_id(self):
+        with raises(Product.DoesNotExist):
+            Product.Driver.get_viewable_by_id(1)
+
+        product = self.product()
+
+        assert Product.Driver.get_viewable_by_id(product.id) == product
 
     @mark.parametrize(
         "days",
