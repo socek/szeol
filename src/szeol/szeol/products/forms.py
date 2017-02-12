@@ -7,4 +7,11 @@ class CreateProductForm(ModelForm):
 
     class Meta:
         model = Product
-        fields = ['name', 'year', 'taste', 'color']
+        exclude = ['when_created']
+
+
+class EditProductForm(ModelForm):
+
+    class Meta:
+        model = Product
+        exclude = ['when_created']

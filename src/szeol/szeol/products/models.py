@@ -57,6 +57,10 @@ class Product(Model):
         def last_week_created_count(cls):
             return cls._last_week_created().count()
 
+        @classmethod
+        def get_viewable_by_id(cls, id_):
+            return cls._viewable().get(id=id_)
+
     @property
     def taste_name(self):
         return dict(self.TASTES)[self.taste]

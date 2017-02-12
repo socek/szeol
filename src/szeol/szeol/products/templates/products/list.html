@@ -21,7 +21,7 @@
                 <table class="table table-striped jambo_table bulk_action">
                   <thead>
                     <tr class="headings">
-                      <th><input type="checkbox" /></th>
+                      <th>&nbsp;</th>
                       <th class="column-title">{% trans "Name" %}</th>
                       <th class="column-title">{% trans "Year" %}</th>
                       <th class="column-title">{% trans "Color" %}</th>
@@ -33,7 +33,7 @@
                     {% for product in products %}
                       <tr class="even pointer">
                         <td><input type="checkbox" /></td>
-                        <td class=" ">{{ product.name }}</td>
+                        <td class=" "><a href="{% url 'products_edit' product_id=product.id %}">{{ product.name }}</a></td>
                         <td class=" ">{{ product.year }}</td>
                         <td class=" ">{{ product.color_name }}</td>
                         <td class=" ">{{ product.taste_name }}</td>

@@ -1,11 +1,9 @@
 {% extends "main/simple_title_layout.html" %}
 {% load i18n %}
 {% block title %}
-    {% trans "Create Product" %}
+    {% trans "Edit Product" %}
 {% endblock %}
 
 {% block content %}
-    {% include "products/partials/form_create.html" with form=form %}
+    {% include "products/partials/form_edit.html" with form=form %}
 {% endblock %}
-
-
