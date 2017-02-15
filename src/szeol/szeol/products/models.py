@@ -26,7 +26,7 @@ class Product(Model):
     year = CharField(max_length=5, help_text=_('Year'))
     taste = CharField(max_length=2, choices=TASTES, help_text=_('Taste'))
     color = CharField(max_length=2, choices=COLORS, help_text=_('Color'))
-    price = DecimalField(max_digits=10, decimal_places=2)
+    price = DecimalField(max_digits=10, decimal_places=2, help_text=_('Price'))
 
     when_created = DateTimeField(default=default_now, db_index=True)
 

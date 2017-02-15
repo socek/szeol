@@ -26,6 +26,7 @@
                       <th class="column-title">{% trans "Year" %}</th>
                       <th class="column-title">{% trans "Color" %}</th>
                       <th class="column-title">{% trans "Taste" %}</th>
+                      <th class="column-title">{% trans "Price" %}</th>
                     </tr>
                   </thead>
 
@@ -37,6 +38,7 @@
                         <td class=" ">{{ product.year }}</td>
                         <td class=" ">{{ product.color_name }}</td>
                         <td class=" ">{{ product.taste_name }}</td>
+                        <td class=" ">{{ product.price }}</td>
                       </tr>
                     {% endfor %}
                   </tbody>
