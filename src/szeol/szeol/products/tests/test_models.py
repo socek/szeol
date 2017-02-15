@@ -42,7 +42,8 @@ class TestProductDriver(object):
                 name='wine',
                 year='1986',
                 taste='d',
-                color='wh')
+                color='wh',
+                price=10.50)
             product.save()
         return product
 
