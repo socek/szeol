@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-02-12 13:16+0000\n"
+"POT-Creation-Date: 2017-02-15 20:59+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -100,10 +100,8 @@ msgstr "Kokpit"
 msgid "Statistics"
 msgstr "Statystyki"
 
-#: szeol/menu/menu.py:19
-#, fuzzy
-#| msgid "Total Products"
-msgid "Proucts"
+#: szeol/menu/menu.py:19 szeol/products/templates/p roducts/list.html:9
+msgid "Products"
 msgstr "Produktów"
 
 #: szeol/menu/menu.py:24
@@ -167,19 +165,10 @@ msgid "Color"
 msgstr "Kolor"
 
 #: szeol/products/templates/products/create.html:4
-#, fuzzy
-#| msgid "Create Account"
 msgid "Create Product"
-msgstr "Stwórz konto"
+msgstr "Stwórz Produkt"
 
 #: szeol/products/templates/products/edit.html:4
-#, fuzzy
-#| msgid "Total Products"
 msgid "Edit Product"
-msgstr "Produktów"
+msgstr "Edycja Produktów"
 
-#: szeol/products/templates/products/list.html:9
-#, fuzzy
-#| msgid "Total Products"
-msgid "Products"
-msgstr "Produktów"

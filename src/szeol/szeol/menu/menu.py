@@ -16,7 +16,7 @@ MENU = (
     ),
     dict(
         id='products',
-        name=_('Proucts'),
+        name=_('Products'),
         icon='fa-glass',
         elements=(
             dict(
