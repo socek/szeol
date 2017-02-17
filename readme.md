@@ -2,7 +2,13 @@
 
 Szeol is a simple CRM for wine store.
 
-# 2. Start developing
+# 2. Dependencies
+
+1. python 3
+2. virtualenv
+3. docker
+
+# 3. Start developing
 
 First you need to create virtualenv. We use makefile for this.
 
@@ -17,7 +23,7 @@ After that you can use local commands to start the server.
 serv
 ```
 
-# 3. List of commands to use
+# 4. List of commands to use
 
 1. serv - start development server
 2. shell - start development shell
