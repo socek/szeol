@@ -8,6 +8,9 @@ from baelfire.error import CommandAborted
 from baelfire.error import CommandError
 
 from .django import BaseManagePy
+from baelszeol.django import MigrateSql
+from baelszeol.docker import Maildump
+from baelszeol.docker import SentryContainer
 
 
 class BaseDjangoServerTask(BaseManagePy):
@@ -18,6 +21,12 @@ class BaseDjangoServerTask(BaseManagePy):
 
 
 class Runserver(BaseDjangoServerTask):
+
+    def create_dependecies(self):
+        super().create_dependecies()
+        self.add_dependency(RunBefore(MigrateSql()))
+        self.add_dependency(RunBefore(Maildump()))
+        self.add_dependency(RunBefore(SentryContainer()))
 
     def build(self):
         try:
@@ -41,7 +50,7 @@ class Coverage(BaseDjangoServerTask):
 
     def build(self):
         cmd = " --cov szeol " + " ".join('"%s"' % x.strip().replace('"', r'\"')
-                       for x in sys.argv[1:])
+                                         for x in sys.argv[1:])
         try:
             self.pytest(cmd)
         except (CommandAborted, CommandError):
@@ -70,6 +79,10 @@ class Manage(BaseDjangoServerTask):
 
 
 class Shell(BaseDjangoServerTask):
+
+    def create_dependecies(self):
+        super().create_dependecies()
+        self.add_dependency(RunBefore(MigrateSql()))
 
     def build(self):
         try:

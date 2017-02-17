@@ -16,22 +16,9 @@ def make_settings(settings, paths):
 
 def default_paths(settings, paths):
     paths['BASE_DIR'] = dirname(dirname(dirname(abspath(__file__))))
+    paths['cwd'] = dirname(dirname(paths['BASE_DIR']))
     paths.set_path('DATA_DIR', 'BASE_DIR', '../tmpdata')
     paths.set_path('main_static', 'BASE_DIR', 'static')
-
-
-def session(settings, paths):
-    settings['session.type'] = 'file'
-    settings['session.key'] = 'needtochangethis'
-    settings['session.secret'] = 'needtochangethistoo'
-    settings['session.cookie_on_exception'] = True
-
-    paths['session'] = {
-        'data_dir': ["%(data)s", 'sessions', 'data'],
-        'lock_dir': ["%(data)s", 'sessions', 'lock'],
-    }
-    settings['session.data_dir'] = '%(paths:session:data_dir)s'
-    settings['session.lock_dir'] = '%(paths:session:lock_dir)s'
 
 
 def installed_apps(settings, paths):
@@ -41,6 +28,8 @@ def installed_apps(settings, paths):
         'django.contrib.sessions',
         'django.contrib.messages',
         'django.contrib.staticfiles',
+
+        'raven.contrib.django.raven_compat',
 
         'szeol.main',
         'szeol.menu',

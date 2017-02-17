@@ -1,0 +1,70 @@
+version: '2'
+
+services:
+  postgres:
+    image: postgres:9.6.2
+    container_name: szeol_postgres
+    ports:
+      - "7000:5432"
+    volumes:
+      - ./psqldb:/var/lib/postgresql/data/pgdata
+      - ./psqlentry:/docker-entrypoint-initdb.d
+    environment:
+      POSTGRES_PASSWORD: "szeol"
+      POSTGRES_USER: "szeol"
+      PGDATA : "/var/lib/postgresql/data/pgdata"
+      PG_TRUST_LOCALNET: "true"
+
+  redis:
+    image: redis:3.2.8
+    container_name: szeol_redis
+    volumes:
+      - ./redisdb:/data
+    ports:
+      - "7001:6379"
+
+  rabbit:
+    image: rabbitmq:3.6.6
+    container_name: szeol_rabbit
+    volumes:
+      - ./rabbitdb:/var/lib/rabbitmq
+    ports:
+      - "7002:5672"
+
+  maildump:
+    image: ball6847/maildump
+    container_name: szeol_maildump
+    ports:
+      - 7003:1080
+      - 7004:1025
+
+  sentry:
+    image: sentry:8.13.0
+    container_name: szeol_sentry
+    volumes:
+      - ./sentrydb:/var/lib/sentry/files
+    ports:
+      - "7005:9000"
+    environment:
+      SENTRY_SECRET_KEY: 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa'
+      SENTRY_POSTGRES_HOST: "postgres"
+      SENTRY_POSTGRES_PORT: "5432"
+      SENTRY_DB_NAME: "sentry"
+      SENTRY_DB_USER: "szeol"
+      SENTRY_DB_PASSWORD: "szeol"
+      SENTRY_REDIS_HOST: "redis"
+      SENTRY_REDIS_PORT: "6379"
+      SENTRY_REDIS_DB: "12"
+
+
+volumes:
+  psqldb:
+    external: true
+  psqlentry:
+    external: true
+  redisdb:
+    external: true
+  rabbitdb:
+    external: true
+  sentrydb:
+    external: True

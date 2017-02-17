@@ -3,7 +3,11 @@ from os.path import getmtime
 from os.path import join
 
 from bael.project.virtualenv import BaseVirtualenv
+from baelfire.dependencies import AlwaysRebuild
 from baelfire.dependencies import Dependency
+from baelfire.dependencies import RunBefore
+
+from baelszeol.docker import PostgresContainer
 
 
 class UrlsChanged(Dependency):
@@ -50,3 +54,13 @@ class BaseManagePy(BaseVirtualenv):
         kwargs['cwd'] = self.paths['package']['main']
         command = self.paths['exe:pytest'] + ' ' + command
         return self.popen([command], *args, **kwargs)
+
+
+class MigrateSql(BaseManagePy):
+
+    def create_dependecies(self):
+        self.add_dependency(RunBefore(PostgresContainer()))
+        self.add_dependency(AlwaysRebuild())
+
+    def build(self):
+        self.manage('migrate')

@@ -14,6 +14,10 @@ class ReProjectCore(ProjectCore):
     def before_dependencies(self):
         super().before_dependencies()
         self.paths.set_path('exe:pytest', 'virtualenv:bin', 'py.test')
+        self.paths.set_path('docker', 'cwd', 'docker')
+        self.paths.set_path('psqldb', 'docker', 'psqldb')
+        self.paths.set_path('sentrydb', 'docker', 'sentrydb')
+        self.paths.set_path('redisdb', 'docker', 'redisdb')
 
 
 def run_task(cls):

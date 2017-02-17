@@ -13,6 +13,8 @@ install_requires = [
     'ipython==5.1.0',
     'ipdb==0.10.1',
     'freezegun==0.3.8',
+    'psycopg2==2.6.2',
+    'raven==5.32.0',
 ]
 
 
