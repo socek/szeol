@@ -6,7 +6,8 @@ Szeol is a simple CRM for wine store.
 
 1. python 3
 2. virtualenv
-3. docker
+3. docker 1.13.1
+4. GNU make 4.2.1
 
 # 3. Start developing
 

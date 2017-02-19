@@ -3,4 +3,4 @@ venv_szeol/bin/python: venv_szeol setup.py
 	@touch venv_szeol/bin/python
 
 venv_szeol:
-	virtualenv3 venv_szeol
+	virtualenv venv_szeol
