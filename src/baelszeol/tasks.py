@@ -3,6 +3,7 @@ import sys
 
 from bael.project.develop import Develop
 from baelfire.dependencies import AlwaysRebuild
+from baelfire.dependencies import FileChanged
 from baelfire.dependencies import RunBefore
 from baelfire.error import CommandAborted
 from baelfire.error import CommandError
@@ -11,6 +12,20 @@ from .django import BaseManagePy
 from baelszeol.django import MigrateSql
 from baelszeol.docker import Maildump
 from baelszeol.docker import SentryContainer
+
+
+class CompileMessages(BaseManagePy):
+    output_name = 'gettext_pl_mo'
+
+    @property
+    def output(self):
+        return self.paths[self.output_name]
+
+    def create_dependecies(self):
+        self.add_dependency(FileChanged('gettext_pl_po'))
+
+    def build(self):
+        self.manage('compilemessages')
 
 
 class BaseDjangoServerTask(BaseManagePy):
@@ -27,6 +42,7 @@ class Runserver(BaseDjangoServerTask):
         self.add_dependency(RunBefore(MigrateSql()))
         self.add_dependency(RunBefore(Maildump()))
         self.add_dependency(RunBefore(SentryContainer()))
+        self.add_dependency(RunBefore(CompileMessages()))
 
     def build(self):
         try:

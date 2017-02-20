@@ -42,8 +42,6 @@ class DockerComposeCtlWrapper(object):
         spp = Popen(
             ['docker-compose up -d ' + self.service_name],
             shell=True,
-            stdout=PIPE,
-            stderr=PIPE,
             cwd=self.cwd,
         )
         if spp.wait() != 0:
@@ -66,8 +64,6 @@ class DockerComposeCtlWrapper(object):
         spp = Popen(
             ['docker volume create --name={0}'.format(name)],
             shell=True,
-            stdout=PIPE,
-            stderr=PIPE,
             cwd=self.cwd,
         )
         if spp.wait() != 0:

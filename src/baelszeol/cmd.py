@@ -18,6 +18,9 @@ class ReProjectCore(ProjectCore):
         self.paths.set_path('psqldb', 'docker', 'psqldb')
         self.paths.set_path('sentrydb', 'docker', 'sentrydb')
         self.paths.set_path('redisdb', 'docker', 'redisdb')
+        self.paths['locale'] = ['%(cwd)s', 'locale', 'pl', 'LC_MESSAGES']
+        self.paths.set_path('gettext_pl_po', 'locale', 'django.po')
+        self.paths.set_path('gettext_pl_mo', 'locale', 'django.mo')
 
 
 def run_task(cls):
