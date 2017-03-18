@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-02-15 20:59+0000\n"
+"POT-Creation-Date: 2017-02-20 09:02+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -80,7 +80,7 @@ msgid "Email"
 msgstr "Email"
 
 #: szeol/localauth/templates/localauth/login.html:89
-#: szeol/products/templates/products/partials/form_create.html:14
+#: szeol/products/templates/products/partials/form_create.html:15
 msgid "Submit"
 msgstr "Zapisz"
 
@@ -100,7 +100,7 @@ msgstr "Kokpit"
 msgid "Statistics"
 msgstr "Statystyki"
 
-#: szeol/menu/menu.py:19 szeol/products/templates/p roducts/list.html:9
+#: szeol/menu/menu.py:19 szeol/products/templates/products/list.html:9
 msgid "Products"
 msgstr "Produktów"
 
@@ -120,49 +120,53 @@ msgstr "Profil"
 msgid "Logout"
 msgstr "Wyloguj"
 
-#: szeol/products/models.py:14
+#: szeol/products/models.py:15
 msgid "Dry"
 msgstr "Wytrawne"
 
-#: szeol/products/models.py:15
+#: szeol/products/models.py:16
 msgid "Semi-Dry"
 msgstr "Półwytrawne"
 
-#: szeol/products/models.py:16
+#: szeol/products/models.py:17
 msgid "Semi-Sweet"
 msgstr "Półsłodkie"
 
-#: szeol/products/models.py:17
+#: szeol/products/models.py:18
 msgid "Sweet"
 msgstr "Słodkie"
 
-#: szeol/products/models.py:20
+#: szeol/products/models.py:21
 msgid "White"
 msgstr "Białe"
 
-#: szeol/products/models.py:21
+#: szeol/products/models.py:22
 msgid "Red"
 msgstr "Czerwone"
 
-#: szeol/products/models.py:22
+#: szeol/products/models.py:23
 msgid "Rosé"
 msgstr "Różowe"
 
-#: szeol/products/models.py:24 szeol/products/templates/products/list.html:25
+#: szeol/products/models.py:25 szeol/products/templates/products/list.html:25
 msgid "Name"
 msgstr "Nazwa"
 
-#: szeol/products/models.py:25 szeol/products/templates/products/list.html:26
+#: szeol/products/models.py:26 szeol/products/templates/products/list.html:26
 msgid "Year"
 msgstr "Rocznik"
 
-#: szeol/products/models.py:26 szeol/products/templates/products/list.html:28
+#: szeol/products/models.py:27 szeol/products/templates/products/list.html:28
 msgid "Taste"
 msgstr "Smak"
 
-#: szeol/products/models.py:27 szeol/products/templates/products/list.html:27
+#: szeol/products/models.py:28 szeol/products/templates/products/list.html:27
 msgid "Color"
 msgstr "Kolor"
+
+#: szeol/products/models.py:29 szeol/products/templates/products/list.html:29
+msgid "Price"
+msgstr ""
 
 #: szeol/products/templates/products/create.html:4
 msgid "Create Product"
@@ -171,4 +175,3 @@ msgstr "Stwórz Produkt"
 #: szeol/products/templates/products/edit.html:4
 msgid "Edit Product"
 msgstr "Edycja Produktów"
-

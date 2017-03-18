@@ -31,3 +31,8 @@ serv
 3. manage - django manage script
 4. tests - run all tests suite
 5. testscov - run all tests suite with coverage report
+
+5. TODO
+- compile messages on change
+- create volume not working ?
+- info o katalogach
