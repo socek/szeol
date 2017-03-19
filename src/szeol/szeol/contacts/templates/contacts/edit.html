@@ -1,0 +1,9 @@
+{% extends "main/simple_title_layout.html" %}
+{% load i18n %}
+{% block title %}
+    {% trans "Edit Contact" %}
+{% endblock %}
+
+{% block content %}
+    {% include "contacts/partials/form_edit.html" with form=form %}
+{% endblock %}

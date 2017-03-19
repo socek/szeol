@@ -36,6 +36,7 @@ def installed_apps(settings, paths):
         'szeol.localauth',
         'szeol.dashboard',
         'szeol.products',
+        'szeol.contacts',
     ]
 
 

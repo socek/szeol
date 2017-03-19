@@ -1,0 +1,11 @@
+{% extends "main/simple_title_layout.html" %}
+{% load i18n %}
+{% block title %}
+    {% trans "Create Contact" %}
+{% endblock %}
+
+{% block content %}
+    {% include "contacts/partials/form_create.html" with form=form %}
+{% endblock %}
+
+

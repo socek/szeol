@@ -7,6 +7,7 @@ from django.db.models import DecimalField
 from django.db.models import Model
 from django.utils.translation import ugettext as _
 
+
 from szeol.main.utils import default_now
 
 

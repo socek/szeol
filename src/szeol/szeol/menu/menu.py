@@ -31,4 +31,21 @@ MENU = (
             ),
         )
     ),
+    dict(
+        id='contacts',
+        name=_('Contacts'),
+        icon='fa-users',
+        elements=(
+            dict(
+                id='contacts_create',
+                name=_('Add'),
+                url=lambda: reverse('contacts_create'),
+            ),
+            dict(
+                id='contacts_list',
+                name=_('List'),
+                url=lambda: reverse('contacts_list'),
+            ),
+        )
+    ),
 )

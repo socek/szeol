@@ -1,3 +1,5 @@
+from django.conf import settings
+
 from szeol.dashboard.views import DashboardHome
 from szeol.main.testing import SzeolDriverFixtures
 
@@ -11,4 +13,5 @@ class TestDashboardHome(SzeolDriverFixtures):
         assert mrequest._context == dict(
             statistics=dict(
                 products=mproduct_driver.viewable_count(),
-                products_created=mproduct_driver.last_week_created_count()))
+                products_created=mproduct_driver.last_week_created_count()),
+            settings=settings)

@@ -9,6 +9,9 @@ urlpatterns = [
         r'^products/',
         include('szeol.products.urls')),
     url(
+        r'^contacts/',
+        include('szeol.contacts.urls')),
+    url(
         r'^',
         include('szeol.dashboard.urls')),
 ]

@@ -1,5 +1,7 @@
 from mock import patch
 from mock import sentinel
+
+from django.conf import settings
 from pytest import yield_fixture
 
 from szeol.main.testing import SzeolDriverFixtures
@@ -56,7 +58,8 @@ class TestListProduct(SzeolDriverFixtures):
         ctrl.get(mrequest)
 
         assert ctrl._context == dict(
-            products=mproduct_driver.viewable.return_value)
+            products=mproduct_driver.viewable.return_value,
+            settings=settings)
 
 
 class TestEditProduct(SzeolDriverFixtures):
