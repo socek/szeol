@@ -92,5 +92,10 @@
     <!-- Custom Theme Scripts -->
     <script src="{% static "/gentelella/build/js/custom.min.js" %}"></script>
 
+    <!-- vuejs -->
+    <script src="{{ settings.VUE_URL }}"></script>
+
+    {% block js %}
+    {% endblock %}
   </body>
 </html>
