@@ -2,7 +2,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import redirect
 from django.views import View
 
-from szeol.main.views import contextwrapper
+from szeol.main.views import ContextWrapper
 from szeol.contacts.forms import CreateContactForm
 from szeol.contacts.forms import EditContactForm
 from szeol.contacts.models import Contact
@@ -13,11 +13,11 @@ class CreateContact(LoginRequiredMixin, View):
     MENU_ID = 'contacts_create'
     TEMPLATE_NAME = 'contacts/create.html'
 
-    @contextwrapper
+    @ContextWrapper()
     def get(self, request, context, matchdict):
         context['form'] = CreateContactForm()
 
-    @contextwrapper
+    @ContextWrapper()
     def post(self, request, context, matchdict):
         form = CreateContactForm(request.POST)
         if form.is_valid():
@@ -32,7 +32,7 @@ class ListContact(LoginRequiredMixin, View):
     MENU_ID = 'contacts_list'
     TEMPLATE_NAME = 'contacts/list.html'
 
-    @contextwrapper
+    @ContextWrapper()
     def get(self, request, context, matchdict):
         context['contacts'] = Contact.Driver.viewable()
 
@@ -42,12 +42,12 @@ class EditContact(LoginRequiredMixin, View):
     MENU_ID = 'contacts_list'
     TEMPLATE_NAME = 'contacts/edit.html'
 
-    @contextwrapper
+    @ContextWrapper()
     def get(self, request, context, matchdict):
         contact = self._fetch_contact(context, matchdict)
         self._fetch_form(context, contact)
 
-    @contextwrapper
+    @ContextWrapper()
     def post(self, request, context, matchdict):
         contact = self._fetch_contact(context, matchdict)
         form = self._fetch_form(context, contact, request.POST)

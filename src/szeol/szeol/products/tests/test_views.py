@@ -27,7 +27,7 @@ class TestDashboardHome(SzeolFixtures):
 
         assert result.status_code == 200
         mform.assert_called_once_with()
-        ctrl._context == dict(form=mform.return_value)
+        mrequest._context == dict(form=mform.return_value)
 
     def test_post_on_fail(self, mrequest, mform):
         ctrl = CreateProduct()
@@ -37,7 +37,7 @@ class TestDashboardHome(SzeolFixtures):
 
         assert result.status_code == 200
         mform.assert_called_once_with(mrequest.POST)
-        ctrl._context == dict(form=mform.return_value)
+        mrequest._context == dict(form=mform.return_value)
 
     def test_post_on_success(self, mrequest, mform, mredirect):
         ctrl = CreateProduct()
@@ -57,7 +57,7 @@ class TestListProduct(SzeolDriverFixtures):
 
         ctrl.get(mrequest)
 
-        assert ctrl._context == dict(
+        mrequest._context == dict(
             products=mproduct_driver.viewable.return_value,
             settings=settings)
 
@@ -113,10 +113,10 @@ class TestEditProduct(SzeolDriverFixtures):
         ctrl.get(mrequest)
 
         mfetch_product.assert_called_once_with(
-            ctrl._context,
-            ctrl._matchdict)
+            mrequest._context,
+            mrequest._matchdict)
         mfetch_form.assert_called_once_with(
-            ctrl._context,
+            mrequest._context,
             mfetch_product.return_value)
 
     def test_post_fail(
@@ -132,10 +132,10 @@ class TestEditProduct(SzeolDriverFixtures):
         ctrl.post(mrequest)
 
         mfetch_product.assert_called_once_with(
-            ctrl._context,
-            ctrl._matchdict)
+            mrequest._context,
+            mrequest._matchdict)
         mfetch_form.assert_called_once_with(
-            ctrl._context,
+            mrequest._context,
             mfetch_product.return_value,
             mrequest.POST)
 
@@ -155,10 +155,10 @@ class TestEditProduct(SzeolDriverFixtures):
         result = ctrl.post(mrequest)
 
         mfetch_product.assert_called_once_with(
-            ctrl._context,
-            ctrl._matchdict)
+            mrequest._context,
+            mrequest._matchdict)
         mfetch_form.assert_called_once_with(
-            ctrl._context,
+            mrequest._context,
             mfetch_product.return_value,
             mrequest.POST)
 

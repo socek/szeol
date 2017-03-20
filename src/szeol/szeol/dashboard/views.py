@@ -1,7 +1,7 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views import View
 
-from szeol.main.views import contextwrapper
+from szeol.main.views import ContextWrapper
 from szeol.products.models import Product
 
 
@@ -10,7 +10,7 @@ class DashboardHome(LoginRequiredMixin, View):
     MENU_ID = 'dashboard_home'
     TEMPLATE_NAME = 'szeol/dashboard.html'
 
-    @contextwrapper
+    @ContextWrapper()
     def get(self, request, context, matchdict):
         context['statistics'] = self.get_statistics()
 

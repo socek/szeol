@@ -5,47 +5,56 @@ from django.shortcuts import render
 from django.conf import settings
 
 
-def contextwrapper(method):
-    @wraps(method)
-    def wrapper(self, request, *args, **kwargs):
+class ContextWrapper(object):
+
+    def __call__(self, method):
+        @wraps(method)
+        def wrapper(mself, request, *args, **kwargs):
+            context = self.init_context(mself, request)
+            matchdict = self.init_matchdict(mself, request, kwargs)
+            self.init_menu(mself, request)
+
+            result = method(
+                mself,
+                request,
+                context,
+                matchdict,
+                *args)
+            if not result:
+                return self.default_render(mself, request)
+            else:
+                return result
+
+        return wrapper
+
+    def init_context(self, mself, request):
         context = getattr(request, '_context', None)
         if not context:
-            context = {
+            request._context = {
                 'settings': settings,
             }
-        request._context = self._context = context
-        self._request = request
-        self._matchdict = kwargs
-        self._request.menu_id = getattr(self, 'MENU_ID', '')
-        result = method(
-            self,
-            request,
-            self._context,
-            self._matchdict,
-            *args)
-        if not result:
-            return render(request, self.TEMPLATE_NAME, self._context)
-        else:
-            return result
+        return request._context
 
-    return wrapper
+    def init_matchdict(self, mself, request, kwargs):
+        matchdict = getattr(request, '_matchdict', None)
+        if not matchdict:
+            request._matchdict = kwargs
+        return request._matchdict
+
+    def init_menu(self, mself, request):
+        request.menu_id = getattr(mself, 'MENU_ID', '')
+
+    def default_render(self, mself, request):
+        return render(request, mself.TEMPLATE_NAME, request._context)
 
 
-def jsonwrapper(method):
-    @wraps(method)
-    def wrapper(self, request, *args, **kwargs):
-        json = request._json = self._json = getattr(request, '_json', {})
-        self._request = request
-        self._matchdict = kwargs
-        result = method(
-            self,
-            request,
-            json,
-            self._matchdict,
-            *args)
-        if not result:
-            return JsonResponse(json)
-        else:
-            return result
+class JsonContextWrapper(ContextWrapper):
 
-    return wrapper
+    def init_context(self, mself, request):
+        context = getattr(request, '_context', None)
+        if not context:
+            request._context = dict()
+        return request._context
+
+    def default_render(self, mself, request):
+        return JsonResponse(request._context)

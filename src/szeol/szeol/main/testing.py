@@ -24,6 +24,11 @@ class SzeolFixtures(object):
         with self._patch('redirect') as mock:
             yield mock
 
+    @yield_fixture
+    def mrender(self):
+        with self._patch('render') as mock:
+            yield mock
+
 
 class SzeolDriverFixtures(SzeolFixtures):
 
