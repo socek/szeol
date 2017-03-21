@@ -3,6 +3,7 @@ from mock import patch
 from pytest import fixture
 from pytest import yield_fixture
 
+from szeol.contacts.models import Contact
 from szeol.products.models import Product
 
 
@@ -35,4 +36,9 @@ class SzeolDriverFixtures(SzeolFixtures):
     @yield_fixture
     def mproduct_driver(self):
         with patch.object(Product, 'Driver') as mock:
+            yield mock
+
+    @yield_fixture
+    def mcontact_driver(self):
+        with patch.object(Contact, 'Driver') as mock:
             yield mock
