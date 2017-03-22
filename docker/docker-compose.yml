@@ -57,14 +57,3 @@ services:
       SENTRY_REDIS_DB: "12"
 
 
-volumes:
-  psqldb:
-    external: true
-  psqlentry:
-    external: true
-  redisdb:
-    external: true
-  rabbitdb:
-    external: true
-  sentrydb:
-    external: True
