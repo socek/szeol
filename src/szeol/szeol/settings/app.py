@@ -37,6 +37,7 @@ def installed_apps(settings, paths):
         'szeol.dashboard',
         'szeol.products',
         'szeol.contacts',
+        'szeol.orders',
     ]
 
 

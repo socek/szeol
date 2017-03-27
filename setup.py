@@ -33,7 +33,7 @@ if __name__ == '__main__':
                 'szserv = baelszeol.cmd:runserver',
                 'szshell = baelszeol.cmd:shell',
                 'szmanage = baelszeol.cmd:manage',
-                'sztests = baelszeol.cmd:tests',
+                'szpytest = baelszeol.cmd:tests',
                 'sztestscov = baelszeol.cmd:coverage',
             )
         }
