@@ -34,7 +34,7 @@ if __name__ == '__main__':
                 'szshell = baelszeol.cmd:shell',
                 'szmanage = baelszeol.cmd:manage',
                 'szpytest = baelszeol.cmd:tests',
-                'sztestscov = baelszeol.cmd:coverage',
+                'szcoverage = baelszeol.cmd:coverage',
             )
         }
     )
