@@ -1,0 +1,53 @@
+{% extends "main/base.html" %}
+{% load static %}
+{% load i18n %}
+{% block maincontent %}
+  <div class="right_col" role="main" style="min-height: 1172px;">
+    <div class="">
+      <div class="page-title">
+        <div class="title_left">
+          <h3>{% trans "Orders" %}</h3>
+        </div>
+      </div>
+
+      <div class="clearfix"></div>
+
+      <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+          <div class="x_panel">
+            <div class="x_content">
+
+              <div class="table-responsive">
+                <table class="table table-striped jambo_table bulk_action">
+                  <thead>
+                    <tr class="headings">
+                      <th class="column-title">{% trans "Id" %}</th>
+                      <th class="column-title">{% trans "Client" %}</th>
+                      <th class="column-title">{% trans "Order Status" %}</th>
+                      <th class="column-title">{% trans "Payment Status" %}</th>
+                      <th class="column-title">{% trans "Description" %}</th>
+                    </tr>
+                  </thead>
+
+                  <tbody>
+                    {% for order in orders %}
+                      <tr class="even pointer">
+                        <td>{{order.id}}</td>
+                        <td>{{order.client}}</td>
+                        <td>{{order.order_status_name}}</td>
+                        <td>{{order.payment_status_name}}</td>
+                        <td>{{order.description}}</td>
+                      </tr>
+                    {% endfor %}
+                  </tbody>
+                </table>
+              </div>
+
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

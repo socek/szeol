@@ -48,4 +48,16 @@ MENU = (
             ),
         )
     ),
+    dict(
+        id='orders',
+        name=_('Orders'),
+        icon='fa-shopping-cart',
+        elements=(
+            dict(
+                id='orders_list',
+                name=_('List'),
+                url=lambda: reverse('orders_list'),
+            ),
+        )
+    ),
 )

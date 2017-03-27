@@ -12,6 +12,9 @@ urlpatterns = [
         r'^contacts/',
         include('szeol.contacts.urls')),
     url(
+        r'^orders/',
+        include('szeol.orders.urls')),
+    url(
         r'^',
         include('szeol.dashboard.urls')),
 ]

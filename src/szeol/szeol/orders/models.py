@@ -36,8 +36,10 @@ class OrderStatus(object):
         (DELIVERED, _('Delivered')),
     )
 
+    _DICT = dict(_CHOICES)
 
-class InvoiceStatus(object):
+
+class PaymentStatus(object):
     """
     State of the payment:
         NOT_STARTED - order is not approved by the client
@@ -61,6 +63,8 @@ class InvoiceStatus(object):
         (PAYMENT_COLLECED_BY_STOREHOUSE, _('Payment collected by storyhouse')),
     )
 
+    _DICT = dict(_CHOICES)
+
 
 class Order(Model):
     description = CharField(
@@ -72,12 +76,13 @@ class Order(Model):
         default=OrderStatus.PENDING)
     payment_status = IntegerField(
         help_text=_('Order status'),
-        choices=InvoiceStatus._CHOICES,
-        default=InvoiceStatus.NOT_STARTED)
+        choices=PaymentStatus._CHOICES,
+        default=PaymentStatus.NOT_STARTED)
     discount = DecimalField(
         max_digits=10,
         decimal_places=3,
         default=0)
+    contact = ForeignKey('contacts.Contact', null=True)
     when_created = DateTimeField(default=default_now, db_index=True)
 
     class Driver(object):
@@ -102,6 +107,21 @@ class Order(Model):
             return cls._viewable().all()
 
         @classmethod
+        def viewable_tab(cls):
+            query = (
+                cls._viewable()
+                .values_list(
+                    'id',
+                    'order_status',
+                    'payment_status',
+                    'description',
+                    'contact__name',
+                    'contact__surname')
+            )
+            for row in query:
+                yield OrderViewTabElement(*row)
+
+        @classmethod
         def viewable_count(cls):
             return cls._viewable().count()
 
@@ -119,3 +139,34 @@ class OrderItem(Model):
     product = ForeignKey('products.Product')
     amount = IntegerField(default=1)
     price = DecimalField(max_digits=10, decimal_places=2, help_text=_('Price'))
+
+
+class OrderViewTabElement(object):
+
+    def __init__(
+        self,
+        id_,
+        order_status,
+        payment_status,
+        description,
+        contact__name,
+        contact__surname,
+    ):
+        self.id = id_
+        self.order_status = order_status
+        self.payment_status = payment_status
+        self.description = description
+        self.contact__name = contact__name
+        self.contact__surname = contact__surname
+
+    @property
+    def client(self):
+        return '{} {}'.format(self.contact__name, self.contact__surname)
+
+    @property
+    def order_status_name(self):
+        return OrderStatus._DICT[self.order_status]
+
+    @property
+    def payment_status_name(self):
+        return PaymentStatus._DICT[self.payment_status]
