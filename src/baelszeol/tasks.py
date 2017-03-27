@@ -11,6 +11,7 @@ from baelfire.error import CommandError
 from .django import BaseManagePy
 from baelszeol.django import MigrateSql
 from baelszeol.docker import Maildump
+from baelszeol.docker import PostgresContainer
 from baelszeol.docker import SentryContainer
 
 
@@ -32,6 +33,7 @@ class BaseDjangoServerTask(BaseManagePy):
 
     def create_dependecies(self):
         self.add_dependency(RunBefore(Develop()))
+        self.add_dependency(RunBefore(PostgresContainer()))
         self.add_dependency(AlwaysRebuild())
 
 
