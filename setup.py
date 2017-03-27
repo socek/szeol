@@ -30,11 +30,11 @@ if __name__ == '__main__':
         install_requires=install_requires,
         entry_points={
             'console_scripts': (
-                'serv = baelszeol.cmd:runserver',
-                'shell = baelszeol.cmd:shell',
-                'manage = baelszeol.cmd:manage',
-                'tests = baelszeol.cmd:tests',
-                'testscov = baelszeol.cmd:coverage',
+                'szserv = baelszeol.cmd:runserver',
+                'szshell = baelszeol.cmd:shell',
+                'szmanage = baelszeol.cmd:manage',
+                'sztests = baelszeol.cmd:tests',
+                'sztestscov = baelszeol.cmd:coverage',
             )
         }
     )
