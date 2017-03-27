@@ -38,15 +38,26 @@ class OrderStatus(object):
 
 
 class InvoiceStatus(object):
+    """
+    State of the payment:
+        NOT_STARTED - order is not approved by the client
+        WAITING_FOR_PAYMENT - waiting for the payment by the client
+        PAYMENT_COLLECED_BY_SELLER - seller has the payment
+        PAYMENT_IN_ADVANCE_BY_SELLER - seller has paid to the storehouse, but
+            not yet recived it from client
+        PAYMENT_COLLECED_BY_STOREHOUSE - storehouse has collected the payment
+    """
     NOT_STARTED = 0
     WAITING_FOR_PAYMENT = 1
     PAYMENT_COLLECED_BY_SELLER = 2
-    PAYMENT_COLLECED_BY_STOREHOUSE = 3
+    PAYMENT_IN_ADVANCE_BY_SELLER = 3
+    PAYMENT_COLLECED_BY_STOREHOUSE = 4
 
     _CHOICES = (
         (NOT_STARTED, _('Not started')),
         (WAITING_FOR_PAYMENT, _('Waiting for payment')),
         (PAYMENT_COLLECED_BY_SELLER, _('Payment collected by seller')),
+        (PAYMENT_IN_ADVANCE_BY_SELLER, _('Payment in advance by seller')),
         (PAYMENT_COLLECED_BY_STOREHOUSE, _('Payment collected by storyhouse')),
     )
 
