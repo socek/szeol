@@ -1,0 +1,16 @@
+{% extends "main/simple_title_layout.html" %}
+{% load i18n %}
+{% block title %}
+    {% trans "Create Order" %}
+{% endblock %}
+
+{% block content %}
+    {% include "orders/partials/form_create.html" with form=form %}
+    <div id="order_create_app">
+        <order-form v-bind:form="form"></order-form>
+    </div>
+{% endblock %}
+
+{% block js %}
+    <script type="text/javascript">$(function(){simple_route('order_form')});</script>
+{% endblock %}
