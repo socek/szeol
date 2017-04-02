@@ -75,7 +75,7 @@ class Order(Model):
         choices=OrderStatus._CHOICES,
         default=OrderStatus.PENDING)
     payment_status = IntegerField(
-        help_text=_('Order status'),
+        help_text=_('Payment status'),
         choices=PaymentStatus._CHOICES,
         default=PaymentStatus.NOT_STARTED)
     discount = DecimalField(
