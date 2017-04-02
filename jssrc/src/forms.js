@@ -20,16 +20,7 @@ export default class SelfForm {
       props: ['form'],
       template: this.component,
       methods: {
-        submitData: function(event) {
-          console.log(this.form.fields.description.value);
-          console.log(this.form.fields.discount.value);
-          console.log(this.form.fields.order_status.value);
-          console.log(this.form.fields.payment_status.value);
-        },
-        change_radio_state: function(field, value, event) {
-          console.log('a', field, value, event);
-          console.log(field);
-        }
+        submitData: this.onSubmit.bind(this)
       }
     });
   }
@@ -38,6 +29,18 @@ export default class SelfForm {
     return {
       method: 'OPTIONS',
       credentials: 'same-origin'
+    }
+  }
+
+  get formElement() {
+    return document.querySelector(this.el +' form');
+  }
+
+  formPost(formData) {
+    return {
+      method: 'POST',
+      credentials: 'same-origin',
+      body: formData
     }
   }
 
@@ -50,18 +53,35 @@ export default class SelfForm {
   }
 
   renderTemplate(data) {
-    console.log(data);
-    new Vue({
-      delimiters: ['${', '}'],
-      el: this.el,
-      data: data
-    });
+    console.log(data.form.fields.order_status);
+    if(this.vue) {
+      this.vue.form.fields = data.form.fields;
+    } else {
+      this.vue = new Vue({
+        delimiters: ['${', '}'],
+        el: this.el,
+        data: data,
+        mounted: this.onCreation.bind(this)
+      });
+    };
   }
 
-  onSubmit(message, event) {
-    console.log(this);
-    console.log('b', message);
-    console.log('c', event);
+  onSubmit(event) {
+    let formData = new FormData(this.formElement);
+    console.log('here', this.vue.form.fields.order_status.value);
+
+    fetch(window.location, this.formPost(formData)).then(
+      this.parseJson.bind(this)).then(
+      this.renderTemplate.bind(this)).catch(
+      this.parseJsonError.bind(this))
+  }
+
+  onCreation() {
+    let inputs = this.formElement.querySelectorAll(
+      'label.active input[type=radio]');
+    for(let input of inputs) {
+      input.click();
+    }
   }
 };
 

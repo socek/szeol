@@ -1,0 +1,5 @@
+<div class="item form-group" v-bind:class="{ bad: !form.fields.{{field.name}}.is_valid }">
+  {% block body %}
+  {% endblock %}
+  <div class="alert" v-for="error in form.fields.{{field.name}}.errors">${error}</div>
+</div>
