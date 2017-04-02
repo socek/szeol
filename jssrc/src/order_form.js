@@ -1,31 +1,7 @@
-import Vue from 'vue'
-Vue.component('order-form', {
-  delimiters: ['${', '}'],
-  props: ['form'],
-  template: '#order_form_template'
-});
-
-Vue.component('form-text-input', {
-  delimiters: ['${', '}'],
-  props: ['field'],
-  template: '#form_text_input'
-});
+import Vue from 'vue';
+import SelfForm from './forms.js';
 
 export function init() {
-  new Vue({
-    delimiters: ['${', '}'],
-    el: '#order_create_app',
-    data: {
-      form: {
-        name: 'myformname',
-        first: {
-          id_for_label: 'idforlabelhej',
-          help_text: 'myhelptext',
-          required: false,
-          name: 'myfirst',
-          value: 'myval',
-        }
-      }
-    }
-  });
+  let form = new SelfForm('#order_create_app', '#order_form_template');
+  form.run();
 };

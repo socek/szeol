@@ -81,7 +81,8 @@ class Order(Model):
     discount = DecimalField(
         max_digits=10,
         decimal_places=3,
-        default=0)
+        default=0,
+        help_text=_('Discount in %'))
     contact = ForeignKey('contacts.Contact', null=True)
     when_created = DateTimeField(default=default_now, db_index=True)
 

@@ -7,7 +7,7 @@
 {% block content %}
     {% include "orders/partials/form_create.html" with form=form %}
     <div id="order_create_app">
-        <order-form v-bind:form="form"></order-form>
+        <form-component v-bind:form="form"></form-component>
     </div>
 {% endblock %}
 

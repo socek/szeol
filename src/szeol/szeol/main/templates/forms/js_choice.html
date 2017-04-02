@@ -1,0 +1,28 @@
+{% extends "forms/base.html" %}
+
+{% block body %}
+  <label class="control-label col-md-3 col-sm-3 col-xs-12">{{field.help_text}} {% if field.field.required %}<span class="required">*</span>{% endif %}</label>
+  <div class="col-md-6 col-sm-6 col-xs-12">
+    <div id="{{field.id_for_label}}" class="btn-group" data-toggle="buttons">
+      {% for value, text in field.field.choices %}
+        {% if value != '' %}
+          <label
+            class="btn btn-default"
+            v-bind:class="{ active: form.fields.{{field.name}}.value == '{{value}}'}"
+            data-toggle-class="btn-primary"
+            data-toggle-passive-class="btn-default"
+            v-on:click="form.fields.{{field.name}}.value = '{{value}}'">
+            <input
+                name="{{field.name}}"
+                value="{{value}}"
+                data-parsley-multiple="{{fiel.name}}"
+                data-parsley-id="12"
+                type="radio"
+                >
+                &nbsp; {{text}} &nbsp;
+          </label>
+        {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+{% endblock %}
